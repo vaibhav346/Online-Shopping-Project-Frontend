@@ -1,0 +1,40 @@
+.brand-directory {
+  background-color: #f1f3f6;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  color: #212121;
+}
+
+.brand-directory h2 {
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.brand-section {
+  margin-bottom: 18px;
+}
+
+.brand-section h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #565656;
+  margin-bottom: 6px;
+}
+
+.brand-section p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand-link {
+  font-size: 13px;
+  color: #2874f0;
+  text-decoration: none;
+}
+
+.brand-link:hover {
+  text-decoration: underline;
+}

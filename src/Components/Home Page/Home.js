@@ -4,6 +4,8 @@ import { FaSearch, FaShoppingCart, FaUserCircle, FaStore, FaBars } from 'react-i
 import Slider from "react-slick"; // <-- Import Slider
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Footer from './Footer';
+import MedialPart from './MedialPart';
 
 // Sample carousel images
 const sliderImages = [
@@ -55,6 +57,7 @@ const Home = () => {
   };
 
   return (
+    <div>
     <header className="flipkart-header">
       <div className="top-bar">
         <div className="logo">
@@ -128,8 +131,12 @@ const Home = () => {
       {/* <div className="electronics-banner">
         <img src="/image/tv-appliances.png" alt="Electronics Offer" />
       </div> */}
+      
     </div>
     </header>
+   <MedialPart></MedialPart>
+    <Footer></Footer>
+    </div>
   );
 };
 
