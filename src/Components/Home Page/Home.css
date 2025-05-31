@@ -90,14 +90,14 @@
   }
   
   .login-btn {
-    background-color: #fff;
+    background-color: blue;
     padding: 6px 14px;
     border-radius: 12px;
   }
   
   .login-btn:hover {
     background-color: blue;
-    color: white;
+    color: blue;
   }
   
   .cart .link-text,
