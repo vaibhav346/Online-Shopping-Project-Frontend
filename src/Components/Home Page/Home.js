@@ -6,6 +6,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from './Footer';
 import MedialPart from './MedialPart';
+import {
+  FaUserGraduate,
+  FaSignInAlt,
+  FaUserShield,
+  FaRegIdBadge,
+  FaUser,
+  FaPlusCircle,
+  FaBoxOpen,
+  FaHeart,
+  FaGift,
+  FaMedal
+} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaCaretDown } from 'react-icons/fa';
+
+
 
 // Sample carousel images
 const sliderImages = [
@@ -44,6 +60,8 @@ const products = [
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false); // <-- for Login dropdown
+
 
   // Slider settings
   const settings = {
@@ -71,9 +89,33 @@ const Home = () => {
         </div>
 
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          <button className="login-btn">
-            <FaUserCircle style={{ marginRight: '6px' }} /> Login
+          <div className="login-dropdown">
+          <button className="login-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+           <FaUserCircle style={{ marginRight: '6px' }} /> Login
+    <FaCaretDown style={{ marginLeft: '6px' }} />
           </button>
+          
+  {dropdownOpen && (
+    <div className="dropdown-menu">
+      <div className="dropdown-header">
+        <span>New Customer?</span>
+        <button className="signup-btn">Sign Up</button>
+      </div>
+     <ul className="dropdown-links">
+  <li><FaUserGraduate /> <Link to="">Student Registration</Link></li>
+  <li><FaSignInAlt /> <a href="#">Student Login</a></li>
+  <li><FaUserShield /> <Link to="/AdminRegistration">Admin Registration</Link></li>
+  <li><FaRegIdBadge /> <Link to="/AdminLogin">Admin Login</Link></li>
+  <li><FaUser /> <a href="#">My Profile</a></li>
+  <li><FaPlusCircle /> <a href="#">Flipkart Plus Zone</a></li>
+  <li><FaBoxOpen /> <a href="#">Orders</a></li>
+  <li><FaHeart /> <a href="#">Wishlist</a></li>
+  <li><FaMedal /> <a href="#">Rewards</a></li>
+  <li><FaGift /> <a href="#">Gift Cards</a></li>
+</ul>
+    </div>
+  )}
+          </div>
 
           <a href="#" className="cart">
             <FaShoppingCart />
