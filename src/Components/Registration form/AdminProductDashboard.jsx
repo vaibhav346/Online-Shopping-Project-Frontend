@@ -13,6 +13,7 @@ const AdminProductDashboard = () => {
     fetchProducts();
   }, []);
 
+
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
