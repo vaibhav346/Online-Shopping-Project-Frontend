@@ -22,7 +22,7 @@ const AdminLogin = () => {
     try {
       const res = await axios.post("http://localhost:8080/admin/login", credentials); 
        alert("Admin Login Successfull!");
-      navigate("/ProductDisplay",{state: res.data}); // Replace with your actual route
+      navigate("/adminshowdata",{state: res.data}); // Replace with your actual route
 
       
     } catch (err) {

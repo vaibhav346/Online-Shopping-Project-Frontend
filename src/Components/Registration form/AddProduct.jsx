@@ -1,111 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useParams, useEffect } from "react-router-dom";
 import "./AddOrUpdate.css";
+import axios from "axios";
 
 const AddProduct = () => {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const admin = state?.admin;
-
-  const [formData, setFormData] = useState({
-    name: "",
-    rating: "",
-    price: "",
-    off: "",
-    delivery: "",
-    bank: "",
-  });
-
-  const [imageFile, setImageFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    // Clear error for this field on change
-    setErrors((prev) => ({ ...prev, [name]: null }));
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    if (e.target.files.length > 0) {
-      setImageFile(e.target.files[0]);
-    } else {
-      setImageFile(null);
-    }
-  };
-
-  // Simple validation before submit
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.rating || isNaN(formData.rating)) newErrors.rating = "Valid rating is required";
-    if (!formData.price || isNaN(formData.price)) newErrors.price = "Valid price is required";
-    return newErrors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!admin || !admin.id) {
-      alert("Admin information is missing. Cannot add product.");
-      return;
-    }
-
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const form = new FormData();
-      form.append("name", formData.name.trim());
-      form.append("rating", parseFloat(formData.rating));
-      form.append("price", parseFloat(formData.price));
-      form.append("off", formData.off.trim());
-      form.append("delivery", formData.delivery.trim());
-      form.append("bank", formData.bank.trim());
-      if (imageFile) form.append("img", imageFile);
-
-      const res = await fetch(`http://localhost:8080/admin/add/${admin.id}`, {
-        method: "POST",
-        body: form,
-      });
-
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText || "Add failed");
-      }
-
-      alert("Product added successfully");
-
-      // Clear form after success
-      setFormData({
-        name: "",
-        rating: "",
-        price: "",
-        off: "",
-        delivery: "",
-        bank: "",
-      });
-      setImageFile(null);
-
-      navigate("/admin-dashboard", { state });
-    } catch (err) {
-      console.error(err);
-      alert("Error adding product: " + err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  let params=useParams();
+  let id=params.id;
+  console.log(id);
+ 
   return (
     <div className="product-form-container">
       <h2>Add New Product</h2>

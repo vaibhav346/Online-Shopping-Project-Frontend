@@ -6,6 +6,9 @@ import AdminLogin from './Components/Registration form/AdminLogin';
 import AdminProductDashboard from './Components/Registration form/AdminProductDashboard';
 import AddOrUpdateProduct from './Components/Registration form/AddORUpdateProduct';
 import AddProduct from './Components/Registration form/AddProduct';
+import AdminShowdata from './Components/Registration form/AdminShowdata';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 const App = () => {
@@ -20,6 +23,8 @@ const App = () => {
     <Route path='/ProductDisplay' element={<AdminProductDashboard></AdminProductDashboard>}/>
     <Route path='/AddOrUpdate' element={<AddOrUpdateProduct></AddOrUpdateProduct>}/>
     <Route path='/AddProduct' element={<AddProduct></AddProduct>}/>
+    <Route path='/adminshowdata' element={<AdminShowdata></AdminShowdata>}></Route>
+    <Route path='/addproduct/:aid' element={<AddProduct></AddProduct>}></Route>
     </Routes>
      </Router>
      

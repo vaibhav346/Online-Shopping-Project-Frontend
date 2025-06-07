@@ -20,7 +20,7 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { FaCaretDown } from 'react-icons/fa';
-
+import ProductList from './ProductList';
 
 
 // Sample carousel images
@@ -89,34 +89,33 @@ const Home = () => {
         </div>
 
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          <div className="login-dropdown">
-          <button className="login-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
-           <FaUserCircle style={{ marginRight: '6px' }} /> Login
-    <FaCaretDown style={{ marginLeft: '6px' }} />
-          </button>
-          
-  {dropdownOpen && (
-    <div className="dropdown-menu">
-      <div className="dropdown-header">
-        <span>New Customer?</span>
-        <button className="signup-btn">Sign Up</button>
-      </div>
-     <ul className="dropdown-links">
-  <li><FaUserGraduate /> <Link to="">Student Registration</Link></li>
-  <li><FaSignInAlt /> <a href="#">Student Login</a></li>
-  <li><FaUserShield /> <Link to="/AdminRegistration">Admin Registration</Link></li>
-  <li><FaRegIdBadge /> <Link to="/AdminLogin">Admin Login</Link></li>
-  <li><FaUser /> <a href="#">My Profile</a></li>
-  <li><FaPlusCircle /> <a href="#">Flipkart Plus Zone</a></li>
-  <li><FaBoxOpen /> <a href="#">Orders</a></li>
-  <li><FaHeart /> <a href="#">Wishlist</a></li>
-  <li><FaMedal /> <a href="#">Rewards</a></li>
-  <li><FaGift /> <a href="#">Gift Cards</a></li>
-</ul>
-    </div>
-  )}
-          </div>
+             <div className="dropdown">
+      <button
+        className="btn btn-light dropdown-toggle d-flex align-items-center"
+        type="button"
+        id="dropdownMenuButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <FaUserCircle className="me-2" /> Login <FaCaretDown className="ms-2" />
+      </button>
 
+      <ul className="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="dropdownMenuButton" style={{ minWidth: '260px' }}>
+        <li className="dropdown-header d-flex justify-content-between align-items-center px-3">
+          <span>New Customer?</span>
+          <button className="btn btn-sm btn-primary">Sign Up</button>
+        </li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/student-registration"><FaUserGraduate className="me-2" /> Student Registration</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/student-login"><FaSignInAlt className="me-2" /> Student Login</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/AdminLogin"><FaRegIdBadge className="me-2" /> Admin Login</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/profile"><FaUser className="me-2" /> My Profile</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/plus-zone"><FaPlusCircle className="me-2" /> Flipkart Plus Zone</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/orders"><FaBoxOpen className="me-2" /> Orders</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/wishlist"><FaHeart className="me-2" /> Wishlist</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/rewards"><FaMedal className="me-2" /> Rewards</Link></li>
+        <li><Link className="dropdown-item d-flex align-items-center" to="/adminshowdata"><FaGift className="me-2" /> Gift Cards</Link></li>
+      </ul>
+    </div>
           <a href="#" className="cart">
             <FaShoppingCart />
             <span className="link-text">Cart</span>
@@ -176,6 +175,7 @@ const Home = () => {
       
     </div>
     </header>
+    <ProductList></ProductList>
    <MedialPart></MedialPart>
     <Footer></Footer>
     </div>
