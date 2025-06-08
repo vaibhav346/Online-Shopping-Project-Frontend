@@ -55,7 +55,7 @@ const products = [
     { name: "Fastrack Smartwatch", price: "From ₹1,399", image: "/image/washing.webp" },
     { name: "Best Selling Mobile S...", price: "From ₹499*", image: "/image/mobile.png" },
     { name: "Projector", price: "From ₹6990", image: "/image/flight.webp" },
-    { name: "Top Mirrorless Camer...", price: "Shop Now!", image: "/image/washing.webp" }
+    // { name: "Top Mirrorless Camer...", price: "Shop Now!", image: "/image/washing.webp" }
   ];
 
 const Home = () => {
@@ -90,15 +90,20 @@ const Home = () => {
 
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
              <div className="dropdown">
-      <button
-        className="btn btn-light dropdown-toggle d-flex align-items-center"
-        type="button"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <FaUserCircle className="me-2" /> Login <FaCaretDown className="ms-2" />
-      </button>
+<button
+  className="btn btn-primary dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-sm"
+  type="button"
+  id="dropdownMenuButton"
+  data-bs-toggle="dropdown"
+  aria-expanded="false"
+>
+  <FaUserCircle size={20} /> Login <FaCaretDown size={14} />
+</button>
+
+
+
+
+
 
       <ul className="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="dropdownMenuButton" style={{ minWidth: '260px' }}>
         <li className="dropdown-header d-flex justify-content-between align-items-center px-3">
@@ -155,25 +160,27 @@ const Home = () => {
         </Slider>
       </div>
       
-      <div className="electronics-container">
-      <div className="electronics-left">
-        <h2>Best of Electronics</h2>
-        <div className="product-slider">
-          {products.map((product, index) => (
-            <div className="product-card" key={index}>
-              <img src={product.image} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p className="price">{product.price}</p>
-            </div>
-          ))}
+     <div className="electronics-container">
+  <div className="electronics-left">
+    <h2>Best of Electronics</h2>
+    <div className="product-slider">
+      {products.map((product, index) => (
+        <div className="product-card" key={index}>
+          <img src={product.image} alt={product.name} />
+          <h3>{product.name}</h3>
+          <p className="price">{product.price}</p>
         </div>
-      </div>
-
-      {/* <div className="electronics-banner">
-        <img src="/image/tv-appliances.png" alt="Electronics Offer" />
-      </div> */}
-      
+      ))}
     </div>
+  </div>
+
+  <div className="electronics-banner">
+    <img src="/image/tv-appliances.png" alt="Electronics Offer" />
+  </div>
+</div>
+
+
+
     </header>
     <ProductList></ProductList>
    <MedialPart></MedialPart>

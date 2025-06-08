@@ -39,40 +39,16 @@ export default function AdminShowdata() {
       });
   };
 
-  if (!admin) {
-    return <h3>Loading admin data...</h3>;
-  }
+ if (!admin) {
+  return <h2 className="text-center">Loading admin data...</h2>;
+}
+// console.log("Product List:", admin.plist);
 
   return (
-    <div >
-      <table striped="columns"   className='table table-bordered border-dark '>
-        <thead>
-          <tr>
-            <th>aid</th>
-            <th>adminusername</th>
-            <th>adminpassword</th>
-            <th>imgurl</th>
-            <th>email</th>
-            <th colSpan="3">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{admin.aid}</td>
-            <td>{admin.adminusername}</td>
-            <td>{admin.adminpassword}</td>
-            <td>{admin.imgurl}</td>
-            <td>{admin.email}</td>
-            <td>
-              <button className='update' >Update</button>
-              <button className='delete'>Delete</button>
-              <button className='update'  onClick={()=>{nevagite(`/addproduct/${admin.aid}`)}}>Add</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className='container'>
+      
 
-      <table striped="columns"   className='table table-bordered border-dark '>
+      {/* <table striped="columns"   className='table table-bordered border-dark '>
         <thead>
           <tr>
             <th>pid</th>
@@ -104,9 +80,57 @@ export default function AdminShowdata() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
 
-      {/* Removed Refresh Button: not needed if using state update */}
-    </div>
+     
+        <div response>
+                <div className="card response" style={{width: "40rem"}} >
+  <img src={admin.imgurl} className="card-img-top"  alt="Vaibhav img"
+  style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} ></img>
+  <div class="card-body">
+    <h5 class="card-title">{admin.adminusername}</h5>
+    <p class="card-text">
+        <strong>Admin Id:</strong>{admin.aid} <br />
+        <strong>Email:</strong>{admin.email} <br />
+       
+    </p>
+     <button className='update' >Update</button>
+              <button className='delete'>Delete</button>
+              <button className='update'  onClick={()=>{nevagite(`/addproduct/${admin.aid}`)}}>Add</button>
+  </div>
+  </div>
+  <br />
+  <br />
+  </div>
+
+         <div className='row'>
+          <br />
+{
+        admin.plist?.map((product, index)=>
+            <div className='col-3  response'  key={index}>
+                <div className="card response" style={{width: "18rem"}} >
+  <img src={product.img} style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} className="card-img-top"  alt="Vaibhav img"
+  style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} ></img>
+  <div class="card-body">
+    {console.log(product.name)}
+    <h5 class="card-title">{product.name}</h5>
+    <p class="card-text">
+        <strong>Rating:</strong>{product.rating} <br />
+        <strong>Price:</strong>{product.price} <br />
+        <strong>Offer:</strong>{product.off} <br />
+        <strong>Delivery Charge:</strong>{product.delivery} <br />
+        <strong>Bank:</strong>{product.bank} <br />
+        <strong>Product Id Number:</strong>{product.pid} <br />
+       
+    </p>
+    <button className='update' onClick={()=>{nevagite(`/updateproduct/${product.pid}`)}}>Update</button>
+                <button className='delete' onClick={() => deleteProduct(product.pid)}>Delete</button>
+  </div>
+</div>
+            </div>
+        )
+    }
+        </div>
+   </div>
   );
 }

@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 import './ProductList.css';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState('');
+  let[product,setProduct]=useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 20; // You can change this as needed
 
-  useEffect(() => {
-    fechproduct();
-  }, []);
 
-let fechproduct=(()=>{
-  
-  axios.get('http://localhost:8080/admin/productsget')
-      .then((res) => {
-        if (Array.isArray(res.data)) {
-          setProducts(res.data);
-          setError('');
-        } else {
-          setError('Unexpected API response format');
-        }
-      })
-      .catch(() => {
-        setError('Failed to load products. Please try again later.');
-      });
-})
- 
+ useEffect(()=>{
+  fechproduct();
+ },[])
+
+ let fechproduct=(()=>{
+  axios.get("http://localhost:8080/admin/productsget")
+  .then((response)=>{
+    console.log(response)
+    setProduct(response.data)
+
+  })
+  .catch((error)=>{console.log(error)})
+ })
 
 
 
@@ -35,8 +31,8 @@ let fechproduct=(()=>{
   // Pagination Logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const currentProducts = product.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(product.length / productsPerPage);
 
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -46,11 +42,9 @@ let fechproduct=(()=>{
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  if (error) {
-    return <p style={{ color: 'red' }}>{error}</p>;
-  }
+ 
 
-  if (products.length === 0) {
+  if (product.length === 0) {
     return <p>No products available.</p>;
   }
 
@@ -59,11 +53,13 @@ let fechproduct=(()=>{
       <div className="product-list">
         {currentProducts.map(product => (
           <div className="card" key={product.pid}>
+            {console.log(product.img)}
             <img
-              src=''
-              alt={product.name}
-              className="product-image"
+              src={product.img}
               
+              alt={product.name}
+              
+              style={{ width: '225px', height: '300px', objectFit: 'cover', borderRadius: '10px' }}
             />
            <div className="product-info">
   <h3>{product.name}</h3>

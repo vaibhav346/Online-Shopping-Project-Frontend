@@ -1,12 +1,68 @@
 import React, { useState } from "react";
-import { useParams, useEffect } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "./AddOrUpdate.css";
 import axios from "axios";
+// import axios from "axios";
 
 const AddProduct = () => {
   let params=useParams();
-  let id=params.id;
-  console.log(id);
+  let aid=params.aid;
+  console.log(aid);
+
+  let [name,setName]=useState('');
+  let [rating,setRating]=useState('');
+  let [price,setPrice]=useState('');
+  let [off,setOff]=useState('');
+  let [delivery,setDelivery]=useState('');
+  let [bank,setBank]=useState('');
+  let [img,setImg]=useState(null);
+
+ 
+
+ let handleSubmit=((event)=>{
+  event.preventDefault();
+
+    const newProduct = {
+      name,
+      rating: parseFloat(rating),
+      price: parseFloat(price),
+      off,
+      delivery,
+      bank,
+      img
+    };
+
+    const adminData = {
+      plist: [newProduct]
+    };
+
+  
+  axios.put(`http://localhost:8080/admin/updatebyid/${aid}`,adminData)
+  .then((response)=>{
+    console.log(response)
+    if(response.data!=null){
+      alert("Product added sucessfully")
+    }
+
+    // Optional: update local plist
+          // plist.push(response.data); 
+          // (Make sure plist is in state or context to reflect this change in UI)
+  })
+  .catch((error)=>{alert("Error")})
+
+
+ })
+
+  
+
+
+  let handleFileChange=((event)=>{
+    let file=event.target.files[0]; // upload mutiple file file is object
+    let fullpath=`./image//${file.name}`;
+    setImg(fullpath);
+    console.log(img);
+
+  })
  
   return (
     <div className="product-form-container">
@@ -15,72 +71,70 @@ const AddProduct = () => {
         <input
           type="text"
           name="name"
-          value={formData.name}
-          onChange={handleChange}
+          value={name}
+          onChange={(e)=>{setName(e.target.value)}}
           placeholder="Product Name"
           required
-          aria-invalid={!!errors.name}
+         
         />
-        {errors.name && <small className="error">{errors.name}</small>}
+      
 
         <input
           type="number"
           name="rating"
           step="0.1"
-          value={formData.rating}
-          onChange={handleChange}
+          value={rating}
+          onChange={(e)=>{setRating(e.target.value)}}
           placeholder="Rating"
           required
-          aria-invalid={!!errors.rating}
+          
         />
-        {errors.rating && <small className="error">{errors.rating}</small>}
+
 
         <input
           type="number"
           name="price"
-          value={formData.price}
-          onChange={handleChange}
+          value={price}
+          onChange={(e)=>{setPrice(e.target.value)}}
           placeholder="Price"
           required
-          aria-invalid={!!errors.price}
+        
         />
-        {errors.price && <small className="error">{errors.price}</small>}
+      
 
         <input
           type="text"
           name="off"
-          value={formData.off}
-          onChange={handleChange}
+          value={off}
+          onChange={(e)=>{setOff(e.target.value)}}
           placeholder="Discount/Offer"
         />
         <input
           type="text"
           name="delivery"
-          value={formData.delivery}
-          onChange={handleChange}
+          value={delivery}
+          onChange={(e)=>{setDelivery(e.target.value)}}
           placeholder="Delivery Info"
         />
         <input
           type="text"
           name="bank"
-          value={formData.bank}
-          onChange={handleChange}
+          value={bank}
+          onChange={(e)=>{setBank(e.target.value)}}
           placeholder="Bank Offer"
         />
 
-        <label htmlFor="img-upload" className="file-label">
-          {imageFile ? `Selected: ${imageFile.name}` : "Upload Image"}
-        </label>
+        
         <input
           type="file"
-          id="img-upload"
+          name="img"
           accept="image/*"
           onChange={handleFileChange}
-          style={{ display: "none" }}
+          
         />
 
-        <button className="submit-btn" type="submit" disabled={loading}>
-          {loading ? "Adding..." : "Add Product"}
+        <button className="submit-btn" type="submit" >
+          Add Product
         </button>
       </form>
     </div>
