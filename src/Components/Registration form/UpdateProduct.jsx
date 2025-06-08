@@ -7,7 +7,7 @@ import "./AddOrUpdate.css";
 const UpdateProduct = () => {
 let params=useParams();
   let pid=params.pid;
-  console.log(pid);
+  // console.log(pid);
   
 
    

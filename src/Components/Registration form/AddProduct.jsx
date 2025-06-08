@@ -7,7 +7,7 @@ import axios from "axios";
 const AddProduct = () => {
   let params=useParams();
   let aid=params.aid;
-  console.log(aid);
+  // console.log(aid);
 
   let [name,setName]=useState('');
   let [rating,setRating]=useState('');
@@ -60,7 +60,7 @@ const AddProduct = () => {
     let file=event.target.files[0]; // upload mutiple file file is object
     let fullpath=`./image//${file.name}`;
     setImg(fullpath);
-    console.log(img);
+    // console.log(img);
 
   })
  

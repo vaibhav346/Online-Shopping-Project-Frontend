@@ -8,6 +8,7 @@ import AddProduct from './Components/Registration form/AddProduct';
 import AdminShowdata from './Components/Registration form/AdminShowdata';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import UpdateAdmin from './Components/Registration form/UpdateAdmin';
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
 
     <Route path='/adminshowdata' element={<AdminShowdata></AdminShowdata>}></Route>
     <Route path='/addproduct/:aid' element={<AddProduct></AddProduct>}></Route>
+    <Route path='/updateadmin/:aid' element={<UpdateAdmin></UpdateAdmin>}></Route>
     </Routes>
      </Router>
      

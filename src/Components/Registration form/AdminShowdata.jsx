@@ -84,9 +84,9 @@ export default function AdminShowdata() {
 
      
         <div response>
-                <div className="card response" style={{width: "40rem"}} >
+                <div className="card response" style={{width: "30rem"}} >
   <img src={admin.imgurl} className="card-img-top"  alt="Vaibhav img"
-  style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} ></img>
+  style={{ width: '450px', height: '450px', objectFit: 'cover', borderRadius: '10px' }} ></img>
   <div class="card-body">
     <h5 class="card-title">{admin.adminusername}</h5>
     <p class="card-text">
@@ -94,7 +94,7 @@ export default function AdminShowdata() {
         <strong>Email:</strong>{admin.email} <br />
        
     </p>
-     <button className='update' >Update</button>
+     <button className='update' onClick={()=>{nevagite(`/updateadmin/${admin.aid}`)}}>Update</button>
               <button className='delete'>Delete</button>
               <button className='update'  onClick={()=>{nevagite(`/addproduct/${admin.aid}`)}}>Add</button>
   </div>
@@ -109,10 +109,10 @@ export default function AdminShowdata() {
         admin.plist?.map((product, index)=>
             <div className='col-3  response'  key={index}>
                 <div className="card response" style={{width: "18rem"}} >
-  <img src={product.img} style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} className="card-img-top"  alt="Vaibhav img"
+  <img src={product.img} style={{ width: '263px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} className="card-img-top"  alt="Vaibhav img"
    ></img>
   <div class="card-body">
-    {console.log(product.name)}
+    {/* {console.log(product.name)} */}
     <h5 class="card-title">{product.name}</h5>
     <p class="card-text">
         <strong>Rating:</strong>{product.rating} <br />
