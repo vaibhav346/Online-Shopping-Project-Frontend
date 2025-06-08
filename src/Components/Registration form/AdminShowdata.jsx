@@ -110,7 +110,7 @@ export default function AdminShowdata() {
             <div className='col-3  response'  key={index}>
                 <div className="card response" style={{width: "18rem"}} >
   <img src={product.img} style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} className="card-img-top"  alt="Vaibhav img"
-  style={{ width: '286px', height: '300px', objectFit: 'cover', borderRadius: '10px' }} ></img>
+   ></img>
   <div class="card-body">
     {console.log(product.name)}
     <h5 class="card-title">{product.name}</h5>
